@@ -21,12 +21,7 @@ class App {
 
     form.addEventListener("submit", this._newWorkout.bind(this));
 
-    inputType.addEventListener("change", function () {
-      inputElevation
-        .closest(".form__row")
-        .classList.toggle("form__row--hidden");
-      inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
-    });
+    inputType.addEventListener("change", this._toggleElevationField);
   }
 
   _getposition() {
@@ -56,7 +51,7 @@ class App {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
 
-    this.#map.on("click", this._showForm);
+    this.#map.on("click", this._showForm.bind(this));
   }
 
   _showForm(mapE) {
@@ -65,7 +60,10 @@ class App {
     inputDistance.focus();
   }
 
-  _toggleElevationField() {}
+  _toggleElevationField() {
+    inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
+    inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
+  }
 
   _newWorkout(e) {
     e.preventDefault();
@@ -79,7 +77,7 @@ class App {
 
     //Display marker
     console.log(mapEvent);
-    const { lat, lng } = mapEvent.latlng;
+    const { lat, lng } = this.#mapEvent.latlng;
     L.marker([lat, lng])
       .addTo(this.#map)
       .bindPopup(
