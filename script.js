@@ -103,15 +103,6 @@ class App {
   _newWorkout(e) {
     e.preventDefault();
 
-    //clear input fieds
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        "";
-
-    //Display marker
-    console.log(mapEvent);
     const { lat, lng } = this.#mapEvent.latlng;
     L.marker([lat, lng])
       .addTo(this.#map)
@@ -126,6 +117,16 @@ class App {
       )
       .setPopupContent("Workout")
       .openPopup();
+
+    //clear input fieds
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        "";
+
+    //Display marker
+    console.log(mapEvent);
   }
 }
 
