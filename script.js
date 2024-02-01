@@ -101,6 +101,9 @@ class App {
   }
 
   _newWorkout(e) {
+    const validInputs = (...inputs) =>
+      inputs.every((inp) => Number.isFinite(inp));
+
     e.preventDefault();
 
     // Get data from form
@@ -116,9 +119,10 @@ class App {
 
       // Check if data is valid
       if (
-        !Number.isFinite(distance) ||
-        !Number.isFinite(duration) ||
-        !Number.isFinite(cadence)
+        // !Number.isFinite(distance) ||
+        // !Number.isFinite(duration) ||
+        // !Number.isFinite(cadence)
+        !validInputs(distance, duration, cadence)
       )
         return alert("Inputs have to be positive numbers!");
     }
@@ -127,6 +131,15 @@ class App {
     if (type === "cycling") {
       const elevation = +inputElevation.value;
     }
+
+    // Check if data is valid
+    if (
+      // !Number.isFinite(distance) ||
+      // !Number.isFinite(duration) ||
+      // !Number.isFinite(cadence)
+      !validInputs(distance, duration, elevation)
+    )
+      return alert("Inputs have to be positive numbers!");
 
     // Add new object to workout array
 
