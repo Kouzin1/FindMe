@@ -51,6 +51,8 @@ const inputElevation = document.querySelector(".form__input--elevation");
 class App {
   #map;
   #mapEvent;
+  #workouts = [];
+
   constructor() {
     this._getposition();
 
@@ -126,7 +128,8 @@ class App {
       )
         return alert("Inputs have to be positive numbers!");
 
-      const workout = new Running();
+      const workout = new Running([lat, lng], distance, duration, cadence);
+      this.#workouts.push(workout);
     }
 
     // If workout cycling, create cycling object
