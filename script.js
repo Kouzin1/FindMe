@@ -104,6 +104,7 @@ class App {
     const validInputs = (...inputs) =>
       inputs.every((inp) => Number.isFinite(inp));
 
+    const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
     e.preventDefault();
 
     // Get data from form
@@ -119,10 +120,8 @@ class App {
 
       // Check if data is valid
       if (
-        // !Number.isFinite(distance) ||
-        // !Number.isFinite(duration) ||
-        // !Number.isFinite(cadence)
-        !validInputs(distance, duration, cadence)
+        !validInputs(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
       )
         return alert("Inputs have to be positive numbers!");
     }
@@ -134,10 +133,8 @@ class App {
 
     // Check if data is valid
     if (
-      // !Number.isFinite(distance) ||
-      // !Number.isFinite(duration) ||
-      // !Number.isFinite(cadence)
-      !validInputs(distance, duration, elevation)
+      !validInputs(distance, duration, elevation) ||
+      !allPositive(distance, duration, elevation)
     )
       return alert("Inputs have to be positive numbers!");
 
