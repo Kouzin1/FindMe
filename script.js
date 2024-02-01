@@ -115,7 +115,11 @@ class App {
       const cadence = +inputCadence.value;
 
       // Check if data is valid
-      if (!Number.isFinite(distance))
+      if (
+        !Number.isFinite(distance) ||
+        !Number.isFinite(duration) ||
+        !Number.isFinite(cadence)
+      )
         return alert("Inputs have to be positive numbers!");
     }
 
