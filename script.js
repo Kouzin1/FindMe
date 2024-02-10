@@ -161,7 +161,7 @@ class App {
     //Display marker
     console.log(mapEvent);
   }
-  renderWorkMarker() {
+  renderWorkMarker(workout) {
     L.marker([lat, lng])
       .addTo(this.#map)
       .bindPopup(
@@ -173,7 +173,7 @@ class App {
           className: `${type}-popup`,
         })
       )
-      .setPopupContent("Workout")
+      .setPopupContent(workout.distance)
       .openPopup();
   }
 }
